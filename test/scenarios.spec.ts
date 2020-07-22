@@ -22,12 +22,15 @@ const options = {
   baseUrl: "http://example.com",
 };
 
+const versionRegExp = /^[0-9]+\.[0-9]+\.[0-9]+$/;
+
 describe("mf2() // scenarios", () => {
   describe("microformats-v1", () => {
     v1.forEach(({ name, input, expected }) => {
       it(`should correctly parse ${name}`, () => {
         const result = mf2(input, options);
         expect(result).to.deep.equal(expected);
+        expect(result.debug.version).to.match(versionRegExp);
       });
     });
   });
@@ -37,6 +40,7 @@ describe("mf2() // scenarios", () => {
       it(`should correctly parse ${name}`, () => {
         const result = mf2(input, options);
         expect(result).to.deep.equal(expected);
+        expect(result.debug.version).to.match(versionRegExp);
       });
     });
   });
@@ -46,6 +50,7 @@ describe("mf2() // scenarios", () => {
       it(`should correctly parse ${name}`, () => {
         const result = mf2(input, options);
         expect(result).to.deep.equal(expected);
+        expect(result.debug.version).to.match(versionRegExp);
       });
     });
   });
@@ -56,6 +61,7 @@ describe("mf2() // local scenarios", () => {
     it(`should correctly parse ${name}`, () => {
       const result = mf2(input, { ...options, experimental: {} });
       expect(result).to.deep.equal(expected);
+      expect(result.debug.version).to.match(versionRegExp);
     });
   });
 });
@@ -68,6 +74,7 @@ describe("mf2() // experimental scenarios", () => {
         experimental: { lang: true, textContent: true },
       });
       expect(result).to.deep.equal(expected);
+      expect(result.debug.version).to.match(versionRegExp);
     });
   });
 });

@@ -21,10 +21,17 @@ export interface ParsingOptions extends ParserOptions {
   };
 }
 
+interface Debug {
+  package: string;
+  source: string;
+  version: string;
+}
+
 export interface ParsedDocument {
+  items: MicroformatRoot[];
   rels: Rels;
   "rel-urls": RelUrls;
-  items: MicroformatRoot[];
+  debug: Debug;
 }
 
 export type MicroformatProperties = Record<string, MicroformatProperty[]>;

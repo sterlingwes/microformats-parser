@@ -4,6 +4,14 @@ const glob = require("glob");
 const path = require("path");
 const { readFileSync } = require("fs");
 
+const pkg = require("../../package.json");
+
+const debug = {
+  version: pkg.version,
+  source: "https://github.com/aimee-gm/microformats-parser.git",
+  package: "https://www.npmjs.com/package/microformats-parser",
+};
+
 const loadScenarios = (baseDir, dir) => {
   const scenarios = glob
     .sync(`${baseDir}/${dir}/**/*.json`)
@@ -16,7 +24,10 @@ const loadScenarios = (baseDir, dir) => {
       return {
         name,
         input: readFileSync(inputPath, "utf8"),
-        expected: JSON.parse(readFileSync(expectedPath, "utf8")),
+        expected: Object.assign(
+          { debug },
+          JSON.parse(readFileSync(expectedPath, "utf8"))
+        ),
       };
     });
 

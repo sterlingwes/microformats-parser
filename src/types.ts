@@ -1,4 +1,4 @@
-import { Element } from "parse5";
+import { Element, Document } from "parse5";
 
 import { BackcompatRoot } from "./backcompat";
 
@@ -25,6 +25,7 @@ export interface ParsedDocument {
   rels: Rels;
   "rel-urls": RelUrls;
   items: MicroformatRoot[];
+  doc?: Document;
 }
 
 export type MicroformatProperties = Record<string, MicroformatProperty[]>;

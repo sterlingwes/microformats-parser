@@ -29,5 +29,6 @@ export const parser = (
     items: findChildren(doc, isMicroformatRoot).map((mf) =>
       parseMicroformat(mf, parsingOptions)
     ),
+    doc,
   };
 };
